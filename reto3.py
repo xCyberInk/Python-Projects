@@ -270,24 +270,25 @@ def main():
     print(lista_existencias)
     for i in range(1, len(lista_existencias)):
         for j in range(0, len(lista_existencias)-j): 
-            if j == lista_existencias[j+1]:
+            if lista_existencias[j+1] > len(lista_existencias):
                 break
-            print(f"indice i: ",lista_existencias[i])
-            print("indice i+1: ", lista_existencias[j+1])
-            aux2 = lista_existencias[j]
-            aux3 = lista_existencias[j+1]
-            if aux2 > aux3:
-                #Ordenamiento existencias
-                aux = lista_existencias[j]
-                lista_existencias[j] = lista_existencias[j+1]
-                lista_existencias[j+1] = aux
-                #lista_existencias.sort()
-                #Ordenamiento sucursales
-                aux = lista_sucursales[j]
-                lista_sucursales[j] = lista_sucursales[j+1]
-                lista_sucursales[j+1] = aux 
             else:
-                continue
+                print(f"indice i: ",lista_existencias[j])
+                print("indice i+1: ", lista_existencias[j+1])
+                aux2 = lista_existencias[j]
+                aux3 = lista_existencias[j+1]
+                if aux2 > aux3:
+                    #Ordenamiento existencias
+                    aux = lista_existencias[j]
+                    lista_existencias[j] = lista_existencias[j+1]
+                    lista_existencias[j+1] = aux
+                    #lista_existencias.sort()
+                    #Ordenamiento sucursales
+                    aux = lista_sucursales[j]
+                    lista_sucursales[j] = lista_sucursales[j+1]
+                    lista_sucursales[j+1] = aux 
+                else:
+                    continue
                 
     print(lista_sucursales)
     print(lista_existencias)
