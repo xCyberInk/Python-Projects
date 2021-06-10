@@ -60,50 +60,53 @@ def leer_medicamentos(cantm, lista_sucursales):
 def main():
     lista_sucursales = []
     lista_sucursales = recorrer_su(lista_sucursales)
-    print(lista_sucursales)
+    #print(lista_sucursales)
     lista_pacientes = []
     cant_pacientes = int(input())
     lista_pacientes = enlistar_pacientes(cant_pacientes)
-    print(lista_pacientes)
+    #print(lista_pacientes)
     cant_existencias = 0
     lista_existencias =[]
     cont = 0
+    cont_aux = []
     
-    print(f"La lista tiene una longitud de: {len(lista_sucursales)} sucursales")
+    #print(f"La lista tiene una longitud de: {len(lista_sucursales)} sucursales")
     for i in range(0, len(lista_sucursales)):
-        print(f"Estamos en la sucursal: {lista_sucursales[i]}")
+        #print(f"Estamos en la sucursal: {lista_sucursales[i]}")
         if cant_existencias < 1:
             aux = int(input())
         else: 
             aux = int(input())
         lista_existencias.append(aux)
+        cont_aux.append(0)
         lista_existencias1 = lista_existencias
         cont += aux
     cant_existencias = cont
-    print(f"Cantidad de existencias: {cant_existencias}")
-    print(f"Esta es la lista de existencias: {lista_existencias}")
+    #print(f"Cantidad de existencias: {cant_existencias}")
+    #print(f"Esta es la lista de existencias: {lista_existencias}")
+    lista_existenciastot = lista_existencias
     cont = 1
     #existencias_totales = [] #Activar solo si las existencias totales varian
-    cont_aux = 0
+    
     cont2 = 0
     while cant_pacientes>0:
-        print(f"Paciente #{cont}")
-        print(f"dijite numero de sucursal, de 1 hasta {len(lista_sucursales)}", end=" ")
+        #print(f"Paciente #{cont}")
+        #print(f"dijite numero de sucursal, de 1 hasta {len(lista_sucursales)}", end=" ")
         sucursal = int(input())
-        sucursal_aux = sucursal
         for j in range(0, len(lista_sucursales)):
             if lista_sucursales[j] == sucursal:
+
                 lista_main_sucursales = []
                 lista_main_existencias = []
                 lista_main_pacientes = []
                 lista_main_existenciastot = []
                 lista_main_medentregados = []
-                print("Esta sucursal existe")
-                print(f"Cantidad de existencias en esta sucursal: {lista_existencias[j]}")
+                # print("Esta sucursal existe")
+                # print(f"Cantidad de existencias en esta sucursal: {lista_existencias[j]}")
                 #Leer presiones
-                print("Presion sistolica:", end=" ")
+                # print("Presion sistolica:", end=" ")
                 ps = int(input())
-                print("Presion diastolica:", end=" ")
+                # print("Presion diastolica:", end=" ")
                 pd = int(input())
                 psa = ps
                 pda = pd
@@ -112,17 +115,18 @@ def main():
                 if(ps>0 and ps<89 and pd>0 and pd<53):
                     categoria = "Hipotension"
                     alerta = "Alerta Amarilla"
-                    cont_aux +=9
+                    
                     medaux = lista_existencias[j] - 9
                     if medaux <0:
                         break
                     else:
                         lista_existencias[j] = lista_existencias[j] - 9
+                        cont_aux[j] = cont_aux[j] + 9
                 elif(ps>=89 and ps<101):
                     if(pd>= 53 and pd<71):
                         categoria = "Ideal"
                         alerta = "Alerta Verde"
-                        cont_aux +=0
+                        cont_aux[j] +=0
                         medaux = lista_existencias[j] - 0
                         if medaux <0:
                             break
@@ -136,7 +140,7 @@ def main():
                     if(pd>= 71 and pd<88):
                         categoria = "Comun"
                         alerta ="Alerta Verde"
-                        cont_aux +=0
+                        cont_aux[j] +=0
                         medaux = lista_existencias[j] - 0
                         if medaux <0:
                             break
@@ -150,7 +154,7 @@ def main():
                     if(pd>= 88 and pd<105):
                         categoria ="Comun-Alta"
                         alerta ="Alerta Amarilla"
-                        cont_aux +=2
+                        cont_aux[j] +=2
                         medaux = lista_existencias[j] - 2
                         if medaux <0:
                             break
@@ -164,7 +168,7 @@ def main():
                     if(pda>= 105 and pda<124):
                         categoria ="HTAG1"
                         alerta ="Alerta Naranja"
-                        cont_aux +=7
+                        cont_aux[j] +=7
                         medaux = lista_existencias[j] - 7
                         if medaux < 0:
                             break
@@ -178,7 +182,7 @@ def main():
                     if(pd>= 124 and pd>0 and pd<143):
                         categoria ="HTAG2"
                         alerta ="Alerta Naranja"
-                        cont_aux +=13
+                        cont_aux[j] +=13
                         medaux = lista_existencias[j] - 13
                         if medaux <0:
                             break
@@ -189,7 +193,7 @@ def main():
                             categoria ="HTASA"
                             alerta ="Alerta Roja"
                             #print(categoria, alerta)
-                            cont_aux += 16
+                            cont_aux[j] += 16
                             medaux = lista_existencias[j] - 16
                             if medaux <0:
                                 break
@@ -205,7 +209,7 @@ def main():
                     if(pd>= 143):
                         categoria ="HTAG3"
                         alerta ="Alerta Roja"
-                        cont_aux +=25
+                        cont_aux[j] +=25
                         medaux = lista_existencias[j] - 25
                         if medaux <0:
                             break
@@ -215,7 +219,7 @@ def main():
                         if(pd>0 and pd<103):
                             categoria ="HTASA"
                             alerta ="Alerta Roja"
-                            cont_aux +=16
+                            cont_aux[j] +=16
                             medaux = lista_existencias[j] - 16 
                             if medaux <0:
                                 break
@@ -229,7 +233,7 @@ def main():
                     if(pd>0 and pd<103):
                         categoria ="HTASA"
                         alerta ="Alerta Roja"
-                        cont_aux +=16
+                        cont_aux[j] +=16
                         medaux = lista_existencias[j] - 16 
                         if medaux <0:
                             break
@@ -247,16 +251,16 @@ def main():
                     categoria ="No se puede determinar la categoria"
                     alerta ="Alerta Gris"
                     #print(categoria, alerta)
-                print(f"Cantidades faltantes: {lista_existencias[j]}")
+                #print(f"Cantidades faltantes: {lista_existencias[j]}")
                 
                 # lista_main_sucursales.append(lista_sucursales)
                 # lista_main_existencias.append(existencias_totales)
                 # lista_main_pacientes.append(lista_pacientes)
-                lista_main_existenciastot.append(lista_existencias)
-                # lista_main_medentregados.append(cont_aux)
+                #lista_main_existenciastot.append(lista_existencias)
+                #lista_main_medentregados.append(cont_aux)
                 
             elif lista_sucursales[j] < sucursal:
-                print("Sucursal fuera de rango")
+                continue
             else:
                 continue
         
@@ -267,14 +271,24 @@ def main():
     aux = 0
     aux2 = 0
     aux3 = 0
-    print(lista_existencias)
+    # print(lista_sucursales)
+    # print(lista_existencias)
+    # print(cont_aux)
+    lista_sucursales_aux = lista_sucursales
+    lista_existencias_aux = lista_existencias
+    cont_aux_2 = cont_aux
+    # print(lista_sucursales_aux)
+    # print(lista_existencias_aux)
+    # print(cont_aux_2)
+    
     for i in range(1, len(lista_existencias)):
-        for j in range(0, len(lista_existencias)-j): 
-            if lista_existencias[j+1] > len(lista_existencias):
+        for j in range(0, len(lista_existencias)-i): 
+            if len(lista_existencias)== i:
+                # print("Esta porquería se va a romper")
                 break
             else:
-                print(f"indice i: ",lista_existencias[j])
-                print("indice i+1: ", lista_existencias[j+1])
+                # print(f"indice i: ",lista_existencias[j])
+                # print("indice i+1: ", lista_existencias[j+1])
                 aux2 = lista_existencias[j]
                 aux3 = lista_existencias[j+1]
                 if aux2 > aux3:
@@ -286,10 +300,60 @@ def main():
                     #Ordenamiento sucursales
                     aux = lista_sucursales[j]
                     lista_sucursales[j] = lista_sucursales[j+1]
-                    lista_sucursales[j+1] = aux 
+                    lista_sucursales[j+1] = aux
+
+                    aux = cont_aux[j]
+                    cont_aux[j] = cont_aux[j+1]
+                    cont_aux[j+1] = aux
                 else:
                     continue
-                
-    print(lista_sucursales)
-    print(lista_existencias)
+    # print("\n")            
+    # print(lista_sucursales)
+    # print(lista_existencias)
+    # print(cont_aux)
+    a=lista_sucursales.pop()
+    b=lista_existencias.pop()
+    print(f"{lista_sucursales[0]} {lista_existencias[0]}")
+    print(f"{a} {b}")
+    lista_sucursales.append(a)
+    lista_existencias.append(b)
+
+    #for i in range(len(lista_existencias)):
+    i = 0
+    for i in range(1, len(lista_sucursales_aux)):
+        for j in range(0, len(lista_sucursales_aux)-i): 
+            if len(lista_sucursales_aux)== i:
+                # print("Esta porquería se va a romper")
+                break
+            else:
+                # print(f"indice i: ",lista_existencias[j])
+                # print("indice i+1: ", lista_existencias[j+1])
+                aux2 = lista_sucursales_aux[j]
+                aux3 = lista_sucursales_aux[j+1]
+                if aux2 > aux3:
+                    #Ordenamiento existencias
+                    aux = lista_sucursales_aux[j]
+                    lista_sucursales_aux[j] = lista_sucursales_aux[j+1]
+                    lista_sucursales_aux[j+1] = aux
+                    #lista_existencias.sort()
+                    #Ordenamiento sucursales
+                    aux = lista_existencias_aux[j]
+                    lista_existencias_aux[j] = lista_existencias_aux[j+1]
+                    lista_existencias_aux[j+1] = aux
+
+                    aux = cont_aux_2[j]
+                    cont_aux_2[j] = cont_aux_2[j+1]
+                    cont_aux_2[j+1] = aux
+                else:
+                    continue
+    # print(lista_sucursales_aux)
+    for i in range(0, len(lista_sucursales_aux)):
+        # print(f"Sucursal #{lista_sucursales_aux[i]}")
+        if cont_aux_2[i] == 0:
+            porcentaje = 0
+            print(lista_sucursales_aux[i], f"{porcentaje:.2f}%")
+        else:
+            existencias_totales = cont_aux_2[i] + lista_existencias_aux[i]
+            porcentaje = (cont_aux_2[i]*100)/existencias_totales
+            print(lista_sucursales_aux[i], f"{porcentaje:.2f}%")
 main()
