@@ -258,7 +258,7 @@ def main():
                 # lista_main_pacientes.append(lista_pacientes)
                 #lista_main_existenciastot.append(lista_existencias)
                 #lista_main_medentregados.append(cont_aux)
-                print "fck men, I don't know how github works"
+                
             elif lista_sucursales[j] < sucursal:
                 continue
             else:
